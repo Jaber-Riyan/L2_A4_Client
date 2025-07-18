@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { ArrowLeft, BookPlus, Loader2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PrivateRoutes from "@/routes/privateRoutes/PrivateRoutes";
 import Swal from "sweetalert2";
 import { useCreateBookMutation } from "@/redux/api/baseApi";
@@ -21,6 +21,7 @@ import Loading from "@/components/loading/loading";
 export default function CreateBookForm() {
   const [createBook, { isLoading: createBookLoading }] =
     useCreateBookMutation();
+    const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -44,6 +45,7 @@ export default function CreateBookForm() {
       });
     }
 
+    navigate("/books")
     setIsLoading(false);
   };
 
